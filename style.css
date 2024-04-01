@@ -3,4 +3,25 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 50px;
+    font-family: lato;
+    font-size: 18px;
+    font-weight: 400;
+
+}
+
+.row1 .row2 .row3 .row4 {
+    display: flex;
+    flex-direction: column;
+
+    
+}
+
+button {
+    align-items: center;
+    padding: 20px;
+    margin:20px;
+    font-family: lato;
+    font-size: 18px;
+    font-weight: 400;
 }
