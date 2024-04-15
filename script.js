@@ -1,28 +1,193 @@
-function add(a,b) {a + b};
-function subtract(a,b) {a - b};
-function multiply(a,b) {a * b};
-function divide (a,b) {a / b};
+// Get all the buttons, operators, and numbers
+const buttons = document.querySelectorAll("button");
+const operators = document.querySelectorAll('.operator');
+const numbers = document.querySelectorAll('.numbers');
+const clear = document.getElementById('clearButton');
+const display = document.getElementById('display');
+const dotButton = document.getElementById('dot');
+const plusminus = document.getElementById('plusorminus');
 
-let var1 = 0;
-let var2 = 0;
-let operator;
+// Initialize variables to store the operator and the two values
+let value1 = '';
+let operator = null;
+let value2 = '';
+let resultDisplayed = false;
 
-function operate(op,var1,var2) {
-    if (op == '+') add(var1,var2);
-    if (op == '-') subtract(var1,var2);
-    if (op == '*') multiply(var1,var2);
-    if (op == '/') divide(var1,var2);
-}
+numbers.forEach(number => {
+    number.addEventListener('click', (event) => {
+        number.classList.add('clicked');
+        if(resultDisplayed) {
+            value1 = '';
+            value2 = '';
+            operator = null;
+            resultDisplayed = false;
+        }
 
-function display() {
-    const buttons = document.querySelectorAll("button");
-    buttons.forEach(button => { 
-        button.addEventListener('click',(e) => {
-            const newDisplay = document.querySelector(".display");
-            if (newDisplay) {
-                newDisplay.textContent = e.target.textContent;
-            }
-        });
+        if (operator === null) {
+            value1 += event.target.textContent;
+            console.log(value1);
+            updateDisplay(value1);
+
+        }
+        else {
+            value2 += event.target.textContent;
+            console.log(value2);
+            updateDisplay(value1 + ' ' + operator + ' ' + value2);
+            
+        }
+        setTimeout(() => {
+            number.classList.remove('clicked');
+        },100);
     });
+});
+
+plusminus.addEventListener('click', () => {
+    if (operator === null) {
+        value1 = (-1 * parseFloat(value1).toString());
+        updateDisplay(value1);
+    }
+    else {
+        value2 = (-1 * parseFloat(value2).toString());
+        updateDisplay(value1 + ' ' + operator + ' ' + value2);
+    }
+})
+
+dotButton.addEventListener('click', () => {
+    if (operator === null && !value1.includes('.')) {
+        value1 += '.';
+        updateDisplay(value1);
+    } else if (operator && !value2.includes('.')) {
+        value2 += '.';
+        updateDisplay(value1 + ' ' + operator + ' ' + value2);
+    }
+});
+
+
+
+
+// Event listener for operator buttons to capture the operator
+
+operators.forEach(op => {
+    op.addEventListener('click', (event) => {
+        if (!resultDisplayed || value1 !== '') {
+            op.classList.add('clicked');
+            // Store the selected operator
+            operator = event.target.textContent.trim();
+            console.log(operator);
+            updateDisplay(value1 + ' ' + operator);
+
+            setTimeout(() => {
+                op.classList.remove('clicked');
+            }, 100);
+        }
+        
+    });
+});
+
+document.addEventListener('keydown', (event) => {
+        const key = event.key;
+        if (['+','-','/','%','*'].includes(key)) {
+            if (!resultDisplayed || value1 !== '') {
+                operator = key;
+                updateDisplay(value1 + ' ' + operator);
+            }
+
+        }
+        else if (key >= '0' && key <= '9') {
+            if (operator === null) {
+                value1 += key;
+                updateDisplay(value1);
+            }
+            else {
+                value2 += key;
+                updateDisplay(value1 + ' ' + operator + ' ' + value2);
+            }
+        }
+        else if (key === 'Enter') {
+            if (value1 && operator && value2) {
+                let result;
+                const num1 = parseFloat(value1);
+                const num2 = parseFloat(value2);
+                switch (operator) {
+                    case '+':
+                        result = num1 + num2;
+                        break;
+                    case '-':
+                        result = num1 - num2;
+                        break;
+                    case 'x':
+                        result = num1 * num2;
+                        break;
+                    case '/':
+                        result = num1 / num2;
+                        break;
+                    case '%':
+                        result = num1 % num2;
+                        break;
+                    default:
+                        result = 'Error' + operator;
+                }
+                console.log('Result calculated:', result);
+                updateDisplay(result);
+                value1 = result;
+                value2 = '';
+            }
+        }     
+});
+
+
+
+
+// Event listener for the equals button to perform the calculation
+const equalsButton = document.getElementById('equals');
+equalsButton.addEventListener('click', () => {
+    // Perform the calculation based on the operator
+    if (value1 && operator && value2) {
+        let result;
+        const num1 = parseFloat(value1);
+        console.log(num1);
+        const num2 = parseFloat(value2);
+        console.log(num2);
+        console.log('Current operator:', operator);
+        switch (operator) {
+            case '+':
+                result = num1 + num2;
+                break;
+            case '-':
+                result = num1 - num2;
+                break;
+            case 'x':
+                result = num1 * num2;
+                break;
+            case '/':
+                result = num1 / num2;
+                break;
+            case '%':
+                result = num1 % num2;
+                break;
+            default:
+                result = 'Error' + operator;
+        }
+        console.log('Result calculated:', result);
+        updateDisplay(result);
+        value1 = result;
+        value2 = '';
+    }
+});
+
+// Event listener for the clear button to reset the calculator
+clear.addEventListener('click', resetCalculator);
+
+function resetCalculator() {
+    operator = null;
+    value1 = '';
+    value2 = '';
+    updateDisplay('');
+    resultDisplayed = false;
 }
-display();
+
+// Function to update the display with the provided content
+function updateDisplay(content) {
+    display.textContent = content;
+}
+
