@@ -42,17 +42,26 @@ numbers.forEach(number => {
 });
 
 plusminus.addEventListener('click', () => {
+    plusminus.classList.add('clicked');
+
     if (operator === null) {
+
         value1 = (-1 * parseFloat(value1).toString());
         updateDisplay(value1);
+
     }
     else {
+
         value2 = (-1 * parseFloat(value2).toString());
         updateDisplay(value1 + ' ' + operator + ' ' + value2);
+
     }
+    setTimeout(() => {plusminus.classList.remove('clicked')},100);
+
 })
 
 dotButton.addEventListener('click', () => {
+    dotButton.classList.add('clicked');
     if (operator === null && !value1.includes('.')) {
         value1 += '.';
         updateDisplay(value1);
@@ -60,6 +69,7 @@ dotButton.addEventListener('click', () => {
         value2 += '.';
         updateDisplay(value1 + ' ' + operator + ' ' + value2);
     }
+    setTimeout(() => {dotButton.classList.remove('clicked')}, 100);
 });
 
 
@@ -69,17 +79,17 @@ dotButton.addEventListener('click', () => {
 
 operators.forEach(op => {
     op.addEventListener('click', (event) => {
+        op.classList.add('clicked');
+
         if (!resultDisplayed || value1 !== '') {
-            op.classList.add('clicked');
             // Store the selected operator
             operator = event.target.textContent.trim();
             console.log(operator);
             updateDisplay(value1 + ' ' + operator);
-
-            setTimeout(() => {
-                op.classList.remove('clicked');
-            }, 100);
         }
+        setTimeout(() => {
+            op.classList.remove('clicked');
+        }, 100);
         
     });
 });
@@ -141,6 +151,8 @@ document.addEventListener('keydown', (event) => {
 // Event listener for the equals button to perform the calculation
 const equalsButton = document.getElementById('equals');
 equalsButton.addEventListener('click', () => {
+    equalsButton.classList.add('clicked');
+
     // Perform the calculation based on the operator
     if (value1 && operator && value2) {
         let result;
@@ -173,10 +185,16 @@ equalsButton.addEventListener('click', () => {
         value1 = result;
         value2 = '';
     }
+    setInterval(() => {equalsButton.classList.remove('clicked')
+    }, 100);
 });
 
 // Event listener for the clear button to reset the calculator
-clear.addEventListener('click', resetCalculator);
+clear.addEventListener('click', () => {
+    clear.classList.add('clicked');
+    resetCalculator();
+    setTimeout(() => {clear.classList.remove('clicked')},100);
+});
 
 function resetCalculator() {
     operator = null;
