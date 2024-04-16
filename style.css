@@ -39,15 +39,8 @@ body {
     margin-bottom: 20px;
     margin-top: 20px;
     border: 1px solid #929292;
-
-
 }   
 
-
-#display {
-    min-width: 300px;
-    border-radius: 20px;
-}
 
 button {
     width: 50px;

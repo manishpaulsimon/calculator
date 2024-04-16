@@ -1,35 +1,24 @@
-# calculator
+Calculator: Simple and Intuitive
+Welcome to the GitHub repository for "Calculator," a project designed to showcase foundational web development skills using HTML, CSS, and JavaScript. This calculator offers a minimalist yet robust interface that balances simplicity with functionality, making it a perfect tool for everyday arithmetic tasks.
 
-Don’t forget to commit early & often! You can reference the Commit Message lesson here!
+Features and Functionality
+Interactive UI: Utilizes button elements for user input, ensuring an interactive and responsive experience.
+Support for Basic Operations: Perform basic mathematical operations like addition, subtraction, multiplication, division, and modulo directly through the UI.
+Immediate Feedback: Real-time display updates showing the current calculation to keep users informed of the operation in progress.
+Advanced Features:
+Negation: Users can negate a number by pressing the ± button, making it easy to switch between positive and negative values.
+Decimal Operations: The calculator handles decimal points, allowing for more precise calculations involving fractions.
+Keyboard Support: For power users, this calculator also supports keyboard inputs for numbers and operators, streamlining data entry and making it more accessible.
+Error Handling: It provides immediate feedback on illegal operations, preventing user confusion and ensuring a smoother user experience.
+Visual Feedback for Button Presses: Buttons visually respond to clicks, which helps users see which operation is being processed.
+Technical Overview
+Event Listeners: The calculator uses event listeners extensively to handle user interactions such as button clicks and keyboard events, updating the display and internal state accordingly.
+State Management: Maintains state through variables representing current values, selected operator, and whether a result has been displayed. This ensures accurate calculations and seamless continuation of operations.
+Responsive Design: Adapts gracefully to different screen sizes and device orientations, ensuring it is as functional on a mobile phone as it is on a desktop.
+Getting Started
+To get started with this project, clone the repository to your local machine and open the index.html file in any modern browser. No additional setup is required, making it immediately usable for anyone interested in a straightforward and effective calculator.
 
-Here are some use cases (abilities your project needs to have):
+Contribution
+Contributions to enhance features, improve user experience, or refactor the codebase are welcome. Please feel free to fork this repository, make your changes, and submit a pull request.
 
-Your calculator is going to contain functions for all of the basic math operators you typically find on calculators, so start by creating functions for the following items and testing them in your browser’s console.
-
-add
-subtract
-multiply
-divide
-
-A calculator operation will consist of a number, an operator, and another number. For example, 3 + 5. Create three variables for each of the parts of a calculator operation. Create a variable for the first number, the operator, and the second number. You’ll use these variables to update your display later.
-Create a new function operate that takes an operator and 2 numbers and then calls one of the above functions on the numbers.
-Create a basic HTML calculator with buttons for each digit, each of the above functions and an “Equals” key.
-Do not worry about wiring up the JS just yet.
-There should also be a display for the calculator. Go ahead and fill it with some dummy numbers so it looks correct.
-Add a “clear” button.
-Create the functions that populate the display when you click the number buttons. You should be storing the ‘display value’ in a variable somewhere for use in the next step.
-Make the calculator work! You’ll need to store the first number and second number that are input into the calculator, utilize the operator that the user selects, and then operate() on the two numbers when the user presses the “=” key.
-You should already have the code that can populate the display, so once operate() has been called, update the display with the ‘solution’ to the operation.
-This is the hardest part of the project. You need to figure out how to store all the values and call the operate function with them. Don’t feel bad if it takes you a while to figure out the logic.
-Gotchas: watch out for and fix these bugs if they show up in your code:
-Users should be able to string together several operations and get the right answer, with each pair of numbers being evaluated at a time. For example, 12 + 7 - 5 * 3 = should yield 42. An example of the behavior we’re looking for would be this student solution.
-Your calculator should not evaluate more than a single pair of numbers at a time. Example: you press a number button (12), followed by an operator button (+), a second number button (7), and finally a second operator button (-). Your calculator should then do the following: first, evaluate the first pair of numbers (12 + 7), second, display the result of that calculation (19), and finally, use that result (19) as the first number in your new calculation, along with the next operator (-).
-You should round answers with long decimals so that they don’t overflow the screen.
-Pressing = before entering all of the numbers or an operator could cause problems!
-Pressing “clear” should wipe out any existing data.. make sure the user is really starting fresh after pressing “clear”
-Display a snarky error message if the user tries to divide by 0… and don’t let it crash your calculator!
-Extra credit
-Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though: 12.3.56.5. It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
-Make it look nice! This is a great project to practice your CSS skills. At least make the operations a different color from the keypad buttons.
-Add a “backspace” button, so the user can undo if they click the wrong number.
-Add keyboard support!
+This project is not only a demonstration of web development skills but also an invitation to the community to collaborate and improve on a basic yet essential tool. Join in refining and expanding its capabilities!
